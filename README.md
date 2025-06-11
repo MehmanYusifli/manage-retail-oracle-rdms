@@ -4,7 +4,7 @@
 
 This repository contains a PDF document titled **"Mehman Yusifli_1630.pdf"**, originally sourced from:
 
-🔗 [https://data.edu.az/media/pdfFolder/Mehman%20Yusifli_1630.pdf](https://data.edu.az/media/pdfFolder/Mehman%20Yusifli_1630.pdf?1749641501)
+[📄 View the PDF](./Mehman_Yusifli_1630.pdf)
 
 ## 📂 File
 
