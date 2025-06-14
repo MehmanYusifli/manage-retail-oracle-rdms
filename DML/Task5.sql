@@ -1,101 +1,100 @@
------Department_id-si 90 olan i?�il?rin maa? c?mini tapan sor?u yaz?n .
+----- Department_id-si 90 olan işçilərin maaş cəmini tapan sorğu.
 select
-sum(salary) AS sahin
+  sum(salary) AS sahin
 from employees
 where department_id = 90;
 
----- Ad? A h?rfi il? ba?layan i?�il?rin maa? ortalamas?n? tapan sor?u yaz?n.
+---- Adı A hərfi ilə başlayan işçilərin maaş ortalamasını tapan sorğu.
 select
-avg(salary) as sahin
+  avg(salary) as sahin
 from employees
 where first_name like 'A%';
 
----- H?r bir department-d? ne�? i?�i oldu?unu tapan sor?u yaz?n.
+---- Hər bir departmentdə neçə işçi olduğunu tapan sorğu.
 select 
-department_id, 
-count(*) as sahin
+  department_id, 
+  count(*) as sahin
 from employees
 group by department_id;
 
----- Departments c?dv?lind?n manager_id s�tununda null olan s?tirl?rin say?n? tap?n.
+---- Departments cədvəlində manager_id sütununda null olan sətirlərin sayını tapan sorğu.
 select 
-count(*) as sahin
+  count(*) as sahin
 from departments
-WHERE manager_id is null;
+where manager_id is null;
 
----- Locations c?dv?lind?n locations c?dv?lind?n  location_id -nin maksimal qiym?tini tap?n.
+---- Locations cədvəlində location_id-nin maksimal qiymətini tapan sorğu.
 select
-max(location_id) as sahin
+  max(location_id) as sahin
 from locations;
 
-----H?r bir country_id �zr? street_address say?n? tapan sor?u yaz?n.
+---- Hər bir country_id üzrə street_address sayını tapan sorğu.
 select
-country_id,
-count(street_address) as sahin
+  country_id,
+  count(street_address) as sahin
 from locations
 group by country_id;
 
------ Employees c?dv?lind?n 110-cu department-d?ki  maksimum maa?la minimum maa??n f?rqini tap?n.
+----- Employees cədvəlində 110-cu departmentdəki maksimum maaşla minimum maaşın fərqini tapan sorğu.
 select
-max(salary) - min(salary) as mehman
+  max(salary) - min(salary) as mehman
 from employees
 where department_id = 110;
 
+-- Bütün employee-lərin maaş və department_id-lərini göstərən sorğu.
 select
-salary,
-department_id
+  salary,
+  department_id
 from employees;
 
-
----- 70-ci department-d?ki i?�i say?n? tapan sql sor?usu yaz?n.
+---- 70-ci departmentdəki işçi sayını tapan sorğu.
 select 
-count(*) as sahin
+  count(*) as sahin
 from employees
 where department_id = 70;
 
----- Ad?n?n uzunlu?u 5-d?n b�y�k olan i?�il?rin orta maa??n? tapan sor?u yaz?n.
+---- Adının uzunluğu 5-dən böyük olan işçilərin orta maaşını tapan sorğu.
 select 
-avg(salary) as sahin
+  avg(salary) as sahin
 from employees
-where 
-length(first_name) > 5;
+where length(first_name) > 5;
 
------ Orta maa?? 7000-d?n �ox olan departmentl?ri tap?n
-select department_id,
-avg(salary) As sahin
+----- Orta maaşı 7000-dən çox olan departmentləri tapan sorğu.
+select 
+  department_id,
+  avg(salary) as sahin
 from employees
-group by department_id;
+group by department_id
+having avg(salary) > 7000;
 
----- task2 Salary-si 10000-d?n �ox olan department-d? i?l?y?n i?�il?ri department adlar?n? tapan sor?u yaz?n.
+---- task2: Salary-si 10000-dən çox olan işçilərin işlədiyi departmentlərin adlarını tapan sorğu.
 select
-distinct department_name
-from Departments
-where department_id 
-in (select 
-distinct department_id
-from Employees
-where salary > 10000);
-
-
------ task3  Adminstration departmentinin yerl??diyi k��?nin ad?n? tap?n. (departments v? locations c?dv?ll?rind?n istifad? etm?kl?)
-select
-street_address
-from locations
-where location_id = (select 
-location_id
+  distinct department_name
 from departments
-where department_name = 'Administration');
+where department_id in (
+  select distinct department_id
+  from employees
+  where salary > 10000
+);
 
-
-
----- task5 50-ci department-d? i?l?m?y?n ,maa??  50-ci departmentd?ki i?�il?rin orta maa??nda �ox olan i?�il?ri tap?n.
+----- task3: Administration departmentinin yerləşdiyi küçənin adını tapmaq (departments və locations cədvəllərindən istifadə etməklə).
 select
-department_id,
-e.salary
+  street_address
+from locations
+where location_id = (
+  select location_id
+  from departments
+  where department_name = 'Administration'
+);
+
+---- task5: 50-ci departmentdə işləməyən, maaşı isə 50-ci departmentdəki işçilərin orta maaşından çox olan işçiləri tapan sorğu.
+select
+  department_id,
+  e.salary
 from employees e
 where e.department_id <> 50
-and e.salary > (select avg(salary)
-from employees e
-where department_id=50);
-
-
+  and e.salary > (
+    select avg(salary)
+    from employees
+    where department_id = 50
+  );
