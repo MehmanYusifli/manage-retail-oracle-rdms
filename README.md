@@ -3,7 +3,8 @@
 
 # Mehman Yusifli - PDF Document
 My certificate for Oracle SQL
-🔗 [https://data.edu.az/media/pdfFolder/Mehman%20Yusifli_1630.pdf](https://data.edu.az/media/pdfFolder/Mehman%20Yusifli_1630.pdf?1749641501)
+🔗 https://www.data.edu.az/az/verified/202594/
+![image](https://github.com/user-attachments/assets/233d421d-c144-4cf1-bdf1-fff7b25eb850)
 
 ## 📂 Topics through tasks 
 Introduction to Oracle and SQL: Writing simple queries
